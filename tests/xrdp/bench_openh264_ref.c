@@ -48,9 +48,9 @@ bench_openh264_previous(const char *src, char *dst_u, char *dst_v, int width)
         uv0 = _mm_loadu_si128((const __m128i *) src);
         uv1 = _mm_loadu_si128((const __m128i *) (src + 16));
         u = _mm_packus_epi16(_mm_and_si128(uv0, mask),
-                            _mm_and_si128(uv1, mask));
+                             _mm_and_si128(uv1, mask));
         v = _mm_packus_epi16(_mm_srli_epi16(uv0, 8),
-                            _mm_srli_epi16(uv1, 8));
+                             _mm_srli_epi16(uv1, 8));
         _mm_storeu_si128((__m128i *) dst_u, u);
         _mm_storeu_si128((__m128i *) dst_v, v);
         src += 32;

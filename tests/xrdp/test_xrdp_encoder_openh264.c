@@ -69,8 +69,8 @@ check_split_uv_row(int width)
             }
 
             xrdp_encoder_openh264_split_uv((const char *) src + src_offset,
-                                          dst_u + u_offset, dst_v + v_offset,
-                                          width);
+                                           dst_u + u_offset, dst_v + v_offset,
+                                           width);
 
             /* Compare the whole buffers, including untouched padding. */
             ck_assert_mem_eq(dst_u, expected_u, sizeof(dst_u));
@@ -158,8 +158,8 @@ START_TEST(test_split_uv_exact_buffer_sizes)
                 }
 
                 xrdp_encoder_openh264_split_uv((const char *) src + src_offset,
-                                              dst_u + u_offset,
-                                              dst_v + v_offset, width);
+                                               dst_u + u_offset,
+                                               dst_v + v_offset, width);
 
                 /* Also verify the sentinel prefixes remain untouched. */
                 ck_assert_mem_eq(dst_u, expected_u, u_size);
@@ -208,8 +208,8 @@ START_TEST(test_split_uv_subrectangle)
     for (row = 0; row < (height + 1) / 2; ++row)
     {
         xrdp_encoder_openh264_split_uv(src + (row + 1) * 96 + 6,
-                                      dst_u + (row + 1) * 48 + 3,
-                                      dst_v + (row + 1) * 56 + 3, width);
+                                       dst_u + (row + 1) * 48 + 3,
+                                       dst_v + (row + 1) * 56 + 3, width);
         for (sample = 0; sample < (width + 1) / 2; ++sample)
         {
             expected_u[(row + 1) * 48 + 3 + sample] =
